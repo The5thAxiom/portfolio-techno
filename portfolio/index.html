@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="index.css" />
         <title>Portfolio-2 | Ditto</title>
         <script defer src="activeNavlink.js"></script>
+        <script defer src="changeNavbar.js"></script>
     </head>
     <body>
         <header>
@@ -16,12 +17,21 @@
                 I'm a <span id="roles">web developer</span>
             </div>
         </header>
-        <nav>
+        <nav id="navbar">
+            <div id="navbar-title">Samridh Anand Paatni</div>
+            <a class="navlink" href="#about">About</a>
             <a class="navlink" href="#projects">Projects</a>
             <a class="navlink" href="#skills">Skills</a>
             <a class="navlink" href="#education">Education</a>
         </nav>
         <main>
+            <section id="about">
+                <h2>About Me</h2>
+                Hello reader! I am Samridh Anand Paatni. I'm a UG Student at VIT
+                Chennai, pursuing a BTech in Computer Science and Engineering. I
+                like to code, learn about languages, play table tennis and ❤️ to
+                cook!
+            </section>
             <section id="projects">
                 <h2>Projects</h2>
                 <div class="cards">
