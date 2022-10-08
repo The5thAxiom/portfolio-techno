@@ -5,11 +5,20 @@ const navBarHeight = 4 * rem;
 
 // setting the active link whenever the section it links to reaches the top
 let prev = null;
+const makeActive = sectionId => {
+    if (prev) prev.classList.remove('active-navlink');
+    const link = document.querySelector(`a[href="#${sectionId}"]`);
+    link.classList.add('active-navlink');
+    prev = link;
+};
+
 let lastScrollTop = 0;
 let hasGoneUp = {};
 
 window.addEventListener('scroll', e => {
     const currentScrollTop = document.documentElement.scrollTop;
+
+    if (currentScrollTop === 0 && prev) prev.classList.remove('active-navlink');
     const scrollingDown = currentScrollTop > lastScrollTop;
 
     for (let section of document.getElementsByTagName('section')) {
@@ -17,16 +26,10 @@ window.addEventListener('scroll', e => {
         const id = section.getAttribute('id');
         if (scrollingDown && y <= navBarHeight && !hasGoneUp[id]) {
             hasGoneUp[id] = true;
-            const link = document.querySelector(`a[href="#${id}"]`);
-            if (prev) prev.classList.remove('active-navlink');
-            link.classList.add('active-navlink');
-            prev = link;
+            makeActive(id);
         } else if (!scrollingDown && y >= navBarHeight && hasGoneUp[id]) {
             hasGoneUp[id] = false;
-            const link = document.querySelector(`a[href="#${id}"]`);
-            if (prev) prev.classList.remove('active-navlink');
-            link.classList.add('active-navlink');
-            prev = link;
+            makeActive(id);
         }
     }
 
