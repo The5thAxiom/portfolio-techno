@@ -113,7 +113,7 @@ main > section:nth-child(2n) {
     background-color: var(--light-green);
 }
 
-main > section .cards {
+.cards {
     display: flex;
     flex-direction: row;
     justify-content: center;
