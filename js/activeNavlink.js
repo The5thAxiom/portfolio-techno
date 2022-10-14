@@ -2,6 +2,7 @@ const rem = Number.parseInt(
     getComputedStyle(document.documentElement).fontSize.replace('px', '')
 );
 const navBarHeight = 4 * rem;
+const delta = 0.5 * rem;
 
 // setting the active link whenever the section it links to reaches the top
 let prev = null;
@@ -24,10 +25,14 @@ window.addEventListener('scroll', e => {
     for (let section of document.getElementsByTagName('section')) {
         const y = section.getBoundingClientRect().y;
         const id = section.getAttribute('id');
-        if (scrollingDown && y <= navBarHeight && !hasGoneUp[id]) {
+        if (scrollingDown && y <= navBarHeight + delta && !hasGoneUp[id]) {
             hasGoneUp[id] = true;
             makeActive(id);
-        } else if (!scrollingDown && y >= navBarHeight && hasGoneUp[id]) {
+        } else if (
+            !scrollingDown &&
+            y >= navBarHeight - delta &&
+            hasGoneUp[id]
+        ) {
             hasGoneUp[id] = false;
             makeActive(id);
         }
